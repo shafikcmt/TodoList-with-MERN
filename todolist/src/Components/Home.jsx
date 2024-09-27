@@ -1,18 +1,44 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Create from './Create'
+import axios from 'axios';
+import { MdCheckBoxOutlineBlank } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
+import { FaRegCheckSquare } from "react-icons/fa";
+
+
+
 
 function Home() {
     const [todos,newTodos] = useState([]);
+    useEffect(()=>{
+      axios.get('http://localhost:3000/get')
+      .then(result => newTodos(result.data))
+      .catch(err => console.log(err))
+    },[]);
+
   return (
     <div className='home'>
         <h2>Todo List</h2>
         <Create />
         {
             todos.length === 0
-            ?
+            ?     
             <div><h2>No Record Found</h2></div>
             :
-            todos.map(todo => {todo})
+            
+              todos.map(todo => 
+              
+               <div className='task'> 
+               task.done ?
+               <MdCheckBoxOutlineBlank className='icon' />
+               :
+               <FaRegCheckSquare />
+                
+               <p>{todo.task}</p>
+               <MdDelete className='icon' />
+               </div>
+              )
+           
         }
     </div>
   )

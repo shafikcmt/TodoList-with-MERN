@@ -16,3 +16,17 @@
   background-color: skyblue;
   border: 2px solid gray;
 }
+.task{
+  width: 250px;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  margin-top: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.task p{
+  width: 80%;
+  text-align: left;
+}

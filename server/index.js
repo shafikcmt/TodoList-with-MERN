@@ -15,6 +15,12 @@ app.post('/add',(req,res)=>{
     })
     .then(result => res.json(result))
     .catch(err => res.json(err))
+});
+
+app.get('/get',(req,res)=>{
+    TodoModel.find()
+    .then(result => res.json(result))
+    .catch(err => res.json(err))
 })
 
 
