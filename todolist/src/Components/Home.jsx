@@ -16,6 +16,12 @@ function Home() {
       .catch(err => console.log(err))
     },[]);
 
+    const handleEdit = (id)=> {
+      axios.put('http://localhost:3000/update'+id)
+      .then(result => console.log(result))
+      .catch(err => console.log(err))
+    }
+
   return (
     <div className='home'>
         <h2>Todo List</h2>
@@ -28,12 +34,13 @@ function Home() {
             
               todos.map(todo => 
               
-               <div className='task'> 
-               task.done ?
-               <MdCheckBoxOutlineBlank className='icon' />
-               :
+               <div className='task' onClick={() => handleEdit(todo._id)}> 
+               {
+               todo.done === true ?
                <FaRegCheckSquare />
-                
+               :
+               <MdCheckBoxOutlineBlank className='icon' />
+               }
                <p>{todo.task}</p>
                <MdDelete className='icon' />
                </div>
