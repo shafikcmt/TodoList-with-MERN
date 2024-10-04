@@ -18,7 +18,18 @@ function Home() {
 
     const handleEdit = (id)=> {
       axios.put('http://localhost:3000/update'+id)
-      .then(result => console.log(result))
+      .then(result => location.reload())
+      .catch(err => console.log(err))
+    }
+    const handleDelete = (id) =>{
+      axios.delete('http://localhost:3000/delete'+id)
+      .then(result => location.reload())
+      .catch(err => console.log(err))
+    }
+
+    const unTick = (id) =>{
+      axios.put('http://localhost:3000/untick'+id)
+      .then(result => location.reload())
       .catch(err => console.log(err))
     }
 
@@ -34,15 +45,15 @@ function Home() {
             
               todos.map(todo => 
               
-               <div className='task' onClick={() => handleEdit(todo._id)}> 
+               <div className='task' > 
                {
                todo.done === true ?
-               <FaRegCheckSquare />
+               <FaRegCheckSquare onClick={() => unTick(todo._id)} />
                :
-               <MdCheckBoxOutlineBlank className='icon' />
+               <MdCheckBoxOutlineBlank className='icon' onClick={() => handleEdit(todo._id)} />
                }
-               <p>{todo.task}</p>
-               <MdDelete className='icon' />
+               <p className={todo.done ? "line":""}>{todo.task}</p>
+               <MdDelete className='icon' onClick={()=> handleDelete(todo._id)} />
                </div>
               )
            

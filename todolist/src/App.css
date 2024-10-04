@@ -30,3 +30,6 @@
   width: 80%;
   text-align: left;
 }
+.line{
+  text-decoration: line-through;
+}
